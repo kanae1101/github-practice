@@ -1,0 +1,20 @@
+# github-practice
+
+# 260615
+
+## 作ったもの
+- profile.py
+
+## 覚えたこと
+- input()で入力を受け取る
+- f文字列
+- print()で空行を入れる
+- Enter待機(input)
+
+## 困ったこと
+- >>>になってgit statusが使えなくなった
+→ exit()でPythonを終了すると戻れる
+
+## 次回やりたいこと
+- if文
+- 年齢によって表示を変える
