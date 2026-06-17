@@ -6,7 +6,7 @@ result = ""
 for letter in text:
     
     number = ord(letter)
-    
+    print(number)
     if number >=97:
         number_border = 123
     else:
@@ -20,6 +20,3 @@ for letter in text:
     result = result + chr(number)
 
 print(result)
-
-
-
