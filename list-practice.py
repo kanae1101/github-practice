@@ -16,11 +16,15 @@ scores = text.split(",")
 #print(scores)
 
 total = 0
+highest = 0
 
 print(f"{len(scores)}人それぞれの点数を表示します")
 for score in scores:
     print(f"{score}点")
     total = total + int(score)
+    if int(score) >= highest:
+       highest = int(score)
+    #print(f"現時点最高点：{highest}点")
 
 print("=======================")
 print()
@@ -29,3 +33,4 @@ print(f"合計：{total}点")
 #ave = total / human
 ave = total / len(scores)
 print(f"平均：{ave}点")
+print(f"最高点：{highest}点")
