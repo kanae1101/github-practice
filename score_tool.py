@@ -26,31 +26,27 @@ text = input("数字を”,”で区切って入力してください：")
 scores = text.split(",")
 
 tool_input = input("合計/平均/最大値/最小値の中から欲しい値を入力してください：")
-if tool_input == "合計":
-     result = calc_total(scores)
-elif tool_input == "平均":
-     result = calc_average(scores)
-elif tool_input == "最大値":
-     result = calc_highest(scores)
-elif tool_input == "最小値":
-     result = calc_lowest(scores)
-else:
-     result = "error-入力値を確認してください-"
 
-input("Enterで結果を表示します")
-print("==============================")
-print(tool_input)
-print(result)
-print("==============================")
+while tool_input != "":
 
+  if tool_input == "合計":
+       result = calc_total(scores)
+  elif tool_input == "平均":
+       result = calc_average(scores)
+  elif tool_input == "最大値":
+       result = calc_highest(scores)
+  elif tool_input == "最小値":
+       result = calc_lowest(scores)
+  else:
+       result = "error-入力値を確認してください-"
 
-again = "はい"
-while again == "はい":
+  input("Enterで結果を表示します")
+  print("==============================")
+  print(tool_input)
+  print(result)
+  print("==============================")
 
- number = input("数字を入力してください：")
- print(f"入力された数字は{number}です")
+  print("終了する場合はそのままEnterを押してください")
+  tool_input = input("続ける場合はもう一度 合計/平均/最大値/最小値の中から欲しい値を入力してください：")
 
- again = input("続けますか？(はい/いいえ)：")
-
-
-print("プログラム終了")
+print("プログラムを終了します")
