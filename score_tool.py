@@ -43,3 +43,14 @@ print(tool_input)
 print(result)
 print("==============================")
 
+
+again = "はい"
+while again == "はい":
+
+ number = input("数字を入力してください：")
+ print(f"入力された数字は{number}です")
+
+ again = input("続けますか？(はい/いいえ)：")
+
+
+print("プログラム終了")
