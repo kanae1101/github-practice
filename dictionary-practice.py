@@ -5,7 +5,7 @@ def calc_total(scores):
     return total
 
 def calc_highest(scores):
-     highest = 0
+     highest = int(scores[0])
      for score in scores:
            if int(score) >= highest:
                highest = int(score)
@@ -22,36 +22,72 @@ def calc_average(scores):
      average = calc_total(scores) / len(scores)
      return average
 
+def calc_count(scores):
+    return len(scores)
+
+def calc_80over(scores):
+    over80 = 0
+    for score in scores:
+        if int(score) >= 80:
+            over80 = over80 + 1
+    return over80
+
+def calc_countscore(scores):
+    count = 0
+    border = int(input("何点以上の人数を数えますか？"))
+    for score in scores:
+        if int(score) >= border:
+            count = count + 1
+    return border , count
+
 tools = {
-    "合計": calc_total,
-    "平均": calc_average,
-    "最大値": calc_highest,
-    "最小値": calc_lowest
+    "合計": (calc_total,"点"),
+    "平均": (calc_average,"点"),
+    "最大値": (calc_highest,"点"),
+    "最小値": (calc_lowest,"点"),
+    "人数": (calc_count,"人"),
+    "80点以上の人数": (calc_80over,"人"),
+    "任意の点以上の人数": (calc_countscore,"人")
     }
 
 text = input("数字を”,”で区切って入力してください：")
 scores = text.split(",")
 
 
-tool_input = input("合計/平均/最大値/最小値の中から欲しい値を入力してください：")
+tool_input = input("合計/平均/最大値/最小値/人数の中から欲しい値を入力してください：")
 
 while tool_input != "":
      
-  tool = tools[tool_input]
-  result = tool(scores)
-  input("Enterで結果を表示します")
-  print("=============================")
-  print(tool_input)
-  print(result)
-  print("=============================")
-  print()
-  print("終了する場合はそのままEnterを押してください")
-  tool_input = input("続ける場合はもう一度 合計/平均/最大値/最小値の中から欲しい値を入力してください：")
+  if tool_input == "任意の点以上の人数":
+     tool,unit = tools[tool_input]
+     result = tool(scores)
+     border,count = result
+
+     input("Enterで結果を表示します")
+     print("=============================")
+     print(f"{border}点以上の人数")
+     print(f"{count}{unit}")
+     print()
+     print("終了する場合はそのままEnterを押してください")
+         
+  elif tool_input in tools:
+          
+     tool,unit = tools[tool_input]
+     result = tool(scores)
+     input("Enterで結果を表示します")
+     print("=============================")
+     print(tool_input)
+     print(f"{result}{unit}")
+     print("=============================")
+     print()
+     print("終了する場合はそのままEnterを押してください")
+     
+  else:
+      print("入力値を確認してください")
+ 
+  tool_input = input("続ける場合はもう一度 合計/平均/最大値/最小値/人数の中から欲しい値を入力してください：")
 
 print("プログラムを終了します")
-print(tools.keys())
-print(tools.values())
-
 
 
 
