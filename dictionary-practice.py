@@ -40,6 +40,18 @@ def calc_countscore(scores):
             count = count + 1
     return border , count
 
+def menu():
+    number = 0
+    print("============================")
+    print("使えるツール一覧")
+
+    for name in tools:
+         number = number + 1
+         print(f"{number} . {name}")
+
+    print("============================")
+
+
 tools = {
     "合計": (calc_total,"点"),
     "平均": (calc_average,"点"),
@@ -49,15 +61,23 @@ tools = {
     "80点以上の人数": (calc_80over,"人"),
     "任意の点以上の人数": (calc_countscore,"人")
     }
+names = list(tools)
 
 text = input("数字を”,”で区切って入力してください：")
 scores = text.split(",")
 
+menu()
 
-tool_input = input("合計/平均/最大値/最小値/人数の中から欲しい値を入力してください：")
+tool_input = input("使いたいツールの名前か番号を入力してください：")
 
 while tool_input != "":
-         
+  if tool_input.isdigit():
+      menu_number = int(tool_input)
+      if 1 <= menu_number <= len(tools):
+         tool_input = names[menu_number - 1]
+      else:
+          tool_input = "error"
+
   if tool_input in tools:
           
      tool,unit = tools[tool_input]
@@ -73,15 +93,17 @@ while tool_input != "":
      print(label)
      print(f"{result}{unit}")
      print("=============================")
-     print()
-     print("終了する場合はそのままEnterを押してください")
-     
+
   else:
       print("入力値を確認してください")
- 
-  tool_input = input("続ける場合はもう一度 合計/平均/最大値/最小値/人数の中から欲しい値を入力してください：")
+
+  again = input("計算を続けますか？はい/いいえ：")
+  if again == "はい" :
+     menu() 
+     tool_input = input("もう一度ツール名か番号を入力してください：")
+  else:
+     tool_input = ""
 
 print("プログラムを終了します")
-
 
 
