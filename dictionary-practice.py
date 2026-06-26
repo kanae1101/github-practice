@@ -57,26 +57,20 @@ scores = text.split(",")
 tool_input = input("合計/平均/最大値/最小値/人数の中から欲しい値を入力してください：")
 
 while tool_input != "":
-     
-  if tool_input == "任意の点以上の人数":
-     tool,unit = tools[tool_input]
-     result = tool(scores)
-     border,count = result
-
-     input("Enterで結果を表示します")
-     print("=============================")
-     print(f"{border}点以上の人数")
-     print(f"{count}{unit}")
-     print()
-     print("終了する場合はそのままEnterを押してください")
          
-  elif tool_input in tools:
+  if tool_input in tools:
           
      tool,unit = tools[tool_input]
      result = tool(scores)
+     label = tool_input
+     if tool_input == "任意の点以上の人数":
+           border,count = result
+           label = (f"{border}点以上の人数")
+           result = count
+
      input("Enterで結果を表示します")
      print("=============================")
-     print(tool_input)
+     print(label)
      print(f"{result}{unit}")
      print("=============================")
      print()
