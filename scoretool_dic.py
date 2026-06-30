@@ -1,21 +1,21 @@
 def calc_total(scores):
     total = 0
     for score in scores:
-         total = total + int(score) 
+         total = total + (score) 
     return total
 
 def calc_highest(scores):
-     highest = int(scores[0])
+     highest = scores[0]
      for score in scores:
-           if int(score) >= highest:
-               highest = int(score)
+           if score >= highest:
+               highest = score
      return highest
 
 def calc_lowest(scores):
-     lowest = int(scores[0])
+     lowest = (scores[0])
      for score in scores:
-          if int(score) <= lowest:
-               lowest = int(score)
+          if (score) <= lowest:
+               lowest = (score)
      return lowest
 
 def calc_average(scores):
@@ -28,7 +28,7 @@ def calc_count(scores):
 def calc_80over(scores):
     over80 = 0
     for score in scores:
-        if int(score) >= 80:
+        if (score) >= 80:
             over80 = over80 + 1
     return over80
 
@@ -36,16 +36,16 @@ def calc_countscore(scores):
     count = 0
     border = int(input("何点以上の人数を数えますか？"))
     for score in scores:
-        if int(score) >= border:
+        if (score) >= border:
             count = count + 1
     return border , count
 
 def calc_middle(scores):
-    scores.sort()
+    scores_sorted = sorted(scores)
     middle_index = len(scores)//2
-    middle = scores[middle_index]
+    middle = scores_sorted[middle_index]
     if len(scores) % 2 == 0 :
-        middle = (int(scores[middle_index]) + int(scores[middle_index - 1])) / 2
+        middle = ((scores_sorted[middle_index]) + (scores_sorted[middle_index - 1])) / 2
     return middle
 
 
@@ -74,7 +74,12 @@ tools = {
 names = list(tools)
 
 text = input("数字を”,”で区切って入力してください：")
-scores = text.split(",")
+scores_text = text.split(",")
+
+scores = []
+
+for score in scores_text:
+    scores.append(int(score))
 
 menu()
 
