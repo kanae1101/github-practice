@@ -48,6 +48,44 @@ def calc_middle(scores):
         middle = ((scores_sorted[middle_index]) + (scores_sorted[middle_index - 1])) / 2
     return middle
 
+def calc_sort_ascending(scores):
+    scores_sorted = sorted(scores)
+
+    scores_text = []
+    for score in scores_sorted:
+        scores_text.append(str(score))
+
+    return ",".join(scores_text)
+
+def calc_sort_descending(scores):
+    scores_sorted = sorted(scores,reverse=True)
+
+    scores_text = []
+    for score in scores_sorted:
+        scores_text.append(str(score))
+
+    return ",".join(scores_text)
+
+def calc_sort(scores):
+    order_name = ""
+    while order_name == "":
+        sort_input = input("昇順なら1を、降順なら2を入力してください")
+        if sort_input == "1":
+           reverse = False
+           order_name = "昇順"
+        elif sort_input == "2":
+           reverse = True
+           order_name = "降順"
+        else:
+            print("入力値を確認してください")
+    scores_sorted = sorted(scores,reverse = reverse)
+
+    scores_text = []
+    for score in scores_sorted:
+        scores_text.append(str(score))
+
+    return ",".join(scores_text) , order_name
+
 
 def menu():
     number = 0
@@ -69,7 +107,10 @@ tools = {
     "人数": (calc_count,"人"),
     "80点以上の人数": (calc_80over,"人"),
     "任意の点以上の人数": (calc_countscore,"人"),
-    "中央値": (calc_middle,"点")
+    "中央値": (calc_middle,"点"),
+    "並び替え(昇順)":(calc_sort_ascending,""),
+    "並び替え(降順)":(calc_sort_descending,""),
+    "並び替え":(calc_sort,"")
     }
 names = list(tools)
 
@@ -77,7 +118,6 @@ text = input("数字を”,”で区切って入力してください：")
 scores_text = text.split(",")
 
 scores = []
-
 for score in scores_text:
     scores.append(int(score))
 
@@ -102,6 +142,10 @@ while tool_input != "":
            border,count = result
            label = (f"{border}点以上の人数")
            result = count
+     elif tool_input == "並び替え":
+           sorted_text, order_name = result
+           label = (f"並び替え({order_name})")
+           result = sorted_text
 
      input("Enterで結果を表示します")
      print("=============================")
