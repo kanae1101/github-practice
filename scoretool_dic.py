@@ -25,12 +25,6 @@ def calc_average(scores):
 def calc_count(scores):
     return len(scores)
 
-def calc_80over(scores):
-    over80 = 0
-    for score in scores:
-        if (score) >= 80:
-            over80 = over80 + 1
-    return over80
 
 def calc_countscore(scores):
     count = 0
@@ -48,23 +42,6 @@ def calc_middle(scores):
         middle = ((scores_sorted[middle_index]) + (scores_sorted[middle_index - 1])) / 2
     return middle
 
-def calc_sort_ascending(scores):
-    scores_sorted = sorted(scores)
-
-    scores_text = []
-    for score in scores_sorted:
-        scores_text.append(str(score))
-
-    return ",".join(scores_text)
-
-def calc_sort_descending(scores):
-    scores_sorted = sorted(scores,reverse=True)
-
-    scores_text = []
-    for score in scores_sorted:
-        scores_text.append(str(score))
-
-    return ",".join(scores_text)
 
 def calc_sort(scores):
     order_name = ""
@@ -105,11 +82,8 @@ tools = {
     "最大値": (calc_highest,"点"),
     "最小値": (calc_lowest,"点"),
     "人数": (calc_count,"人"),
-    "80点以上の人数": (calc_80over,"人"),
     "任意の点以上の人数": (calc_countscore,"人"),
     "中央値": (calc_middle,"点"),
-    "並び替え(昇順)":(calc_sort_ascending,""),
-    "並び替え(降順)":(calc_sort_descending,""),
     "並び替え":(calc_sort,"")
     }
 names = list(tools)
