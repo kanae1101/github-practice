@@ -63,6 +63,26 @@ def calc_sort(scores):
 
     return ",".join(scores_text) , order_name
 
+def calc_range(scores):
+    score_range = calc_highest(scores) - calc_lowest(scores)
+    return score_range
+
+def calc_mode(scores):
+    counts = {}
+    for score in scores:
+       if score in counts:
+        counts[score] = counts[score] + 1
+       else:
+        counts[score] = 1
+    max_count = 0
+    mode = scores[0]
+    for score_counts in counts:
+          if counts[score_counts] > max_count:
+            max_count = counts[score_counts]
+            mode = score_counts
+    return mode
+
+
 
 def menu():
     number = 0
@@ -84,7 +104,9 @@ tools = {
     "人数": (calc_count,"人"),
     "任意の点以上の人数": (calc_countscore,"人"),
     "中央値": (calc_middle,"点"),
-    "並び替え":(calc_sort,"")
+    "並び替え":(calc_sort,""),
+    "範囲":(calc_range,"点"), 
+    "最頻値":(calc_mode,"点")
     }
 names = list(tools)
 
