@@ -82,6 +82,15 @@ def calc_mode(scores):
             mode = score_counts
     return mode
 
+def calc_variance(scores):
+    average = calc_average(scores)
+    variance_total = 0
+    for score in scores:
+        difference = score - average
+        difference_2 = (difference**2)
+        variance_total = variance_total + difference_2
+    variance = variance_total/calc_count(scores)
+    return variance
 
 
 def menu():
@@ -106,7 +115,8 @@ tools = {
     "中央値": (calc_middle,"点"),
     "並び替え":(calc_sort,""),
     "範囲":(calc_range,"点"), 
-    "最頻値":(calc_mode,"点")
+    "最頻値":(calc_mode,"点"),
+    "分散":(calc_variance,"")
     }
 names = list(tools)
 
