@@ -75,12 +75,22 @@ def calc_mode(scores):
        else:
         counts[score] = 1
     max_count = 0
-    mode = scores[0]
+    modes = []
     for score_counts in counts:
-          if counts[score_counts] > max_count:
+        if counts[score_counts] > max_count:
+            modes = []
+            modes.append(score_counts)
             max_count = counts[score_counts]
-            mode = score_counts
-    return mode
+        elif counts[score_counts] == max_count:
+            modes.append(score_counts)
+
+    modes_text = []    
+    for score in modes:
+        modes_text.append(str(score))
+
+    return ",".join(modes_text)
+
+
 
 def calc_variance(scores):
     average = calc_average(scores)
@@ -115,7 +125,7 @@ tools = {
     "中央値": (calc_middle,"点"),
     "並び替え":(calc_sort,""),
     "範囲":(calc_range,"点"), 
-    "最頻値":(calc_mode,"点"),
+    "最頻値":(calc_mode,"(点)"),
     "分散":(calc_variance,"")
     }
 names = list(tools)
