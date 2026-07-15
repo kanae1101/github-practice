@@ -46,7 +46,7 @@ def calc_middle(scores):
 def calc_sort(scores):
     order_name = ""
     while order_name == "":
-        sort_input = input("昇順なら1を、降順なら2を入力してください")
+        sort_input = input("昇順なら1を、降順なら2を入力してください:")
         if sort_input == "1":
            reverse = False
            order_name = "昇順"
@@ -57,11 +57,8 @@ def calc_sort(scores):
             print("入力値を確認してください")
     scores_sorted = sorted(scores,reverse = reverse)
 
-    scores_text = []
-    for score in scores_sorted:
-        scores_text.append(str(score))
+    return list_to_text(scores_sorted) , order_name
 
-    return ",".join(scores_text) , order_name
 
 def calc_range(scores):
     score_range = calc_highest(scores) - calc_lowest(scores)
@@ -74,6 +71,7 @@ def calc_mode(scores):
         counts[score] = counts[score] + 1
        else:
         counts[score] = 1
+
     max_count = 0
     modes = []
     for score_counts in counts:
@@ -84,12 +82,7 @@ def calc_mode(scores):
         elif counts[score_counts] == max_count:
             modes.append(score_counts)
 
-    modes_text = []    
-    for score in modes:
-        modes_text.append(str(score))
-
-    return ",".join(modes_text)
-
+    return list_to_text(modes)
 
 
 def calc_variance(scores):
@@ -101,6 +94,12 @@ def calc_variance(scores):
         variance_total = variance_total + difference_2
     variance = variance_total/calc_count(scores)
     return variance
+
+def list_to_text(numbers):
+    numbers_text = []
+    for number in numbers:
+        numbers_text.append(str(number))
+    return ",".join(numbers_text)
 
 
 def menu():
